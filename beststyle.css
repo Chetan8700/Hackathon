@@ -1,0 +1,85 @@
+.page_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0a0a0a;
+    height: 100vh;
+    padding: 20px;
+    color: white;
+}
+
+/* Left Section for Logo */
+.logo_section {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo_image {
+    width: 60%;
+    max-width: 200px;
+}
+
+/* Right Section for Form */
+.form_container {
+    background: white;
+    padding: 40px;
+    width: 350px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 255, 100, 0.6);
+    margin-right: 10%;
+}
+
+.page_heading {
+    font-size: 28px;
+    font-weight: bold;
+    color: green;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.sub_heading {
+    font-size: 16px;
+    color: #bdbdbd;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input_label {
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+.input_box {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 2px solid green;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.submit_btn {
+    background-color: green;
+    color: black;
+    padding: 10px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.submit_btn:hover {
+    background-color: #009900;
+}
+.containe{
+    position: fixed;
+    x : 120px;
+    y: 120px;
+}

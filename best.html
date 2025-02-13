@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Analysis Portal</title>
+    <link rel="stylesheet" href="beststyle.css">
+    <style>
+        /* Popup styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .popup_content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            width: 400px;
+            text-align: center;
+        }
+
+        .popup button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        /* Slider styling */
+        .slider {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .slider_value {
+            position: absolute;
+            top: -25px;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 14px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .form_container {
+            margin-top: 50px;
+        }
+
+        /* Slider wrapper for position adjustment */
+        .slider_wrapper {
+            position: relative;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="page_wrapper">
+        <!-- Left Section for Logo -->
+        <div class="logo_section">
+            <img src="https://res.cloudinary.com/dnxijnw0s/image/upload/v1739423307/Untitled_design_p4isrw.png" alt="Soil Analysis Logo" class="logo_image">
+        </div>
+
+        <!-- Right Section for Form -->
+        <div class="form_container">
+            <h1 class="page_heading">🌱 Soil Health Analysis Portal</h1>
+            <p class="sub_heading">Enter the soil parameters below to get an analysis of soil health.</p>
+            
+            <form id="soilForm" class="soil_form">
+                <label class="input_label">pH Level</label>
+                <div class="slider_wrapper">
+                    <input type="range" id="phLevel" class="slider" min="0" max="12" value="6">
+                    <span id="phValue" class="slider_value" style="left: 50%;">6</span>
+                </div>
+
+                <label class="input_label">Electrical Conductivity (EC)</label>
+                <div class="slider_wrapper">
+                    <input type="range" id="ecLevel" class="slider" min="0" max="10" value="5">
+                    <span id="ecValue" class="slider_value" style="left: 50%;">5</span>
+                </div>
+
+                <label class="input_label">Organic Carbon (OC)</label>
+                <div class="slider_wrapper">
+                    <input type="range" id="ocLevel" class="slider" min="0" max="10" value="5">
+                    <span id="ocValue" class="slider_value" style="left: 50%;">5</span>
+                </div>
+
+                <label class="input_label">Available Phosphorus (Avail-P)</label>
+                <div class="slider_wrapper">
+                    <input type="range" id="availP" class="slider" min="0" max="50" value="25">
+                    <span id="availPValue" class="slider_value" style="left: 50%;">25</span>
+                </div>
+
+                <label class="input_label">Exchangeable Potassium (Exch-K)</label>
+                <div class="slider_wrapper">
+                    <input type="range" id="exchK" class="slider" min="0" max="200" value="100">
+                    <span id="exchKValue" class="slider_value" style="left: 50%;">100</span>
+                </div>
+
+                <label class="input_label">Available Sulfur (Avail-S)</label>
+                <div class="slider_wrapper">
+                    <input type="range" id="availS" class="slider" min="0" max="50" value="25">
+                    <span id="availSValue" class="slider_value" style="left: 50%;">25</span>
+                </div>
+                
+                <button type="submit" class="submit_btn">Submit Analysis</button>
+            </form>
+
+            <div id="recommendation" class="recommendation_section">
+                <h2>Recommended Crop: <span id="cropRecommendation">-</span></h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup for Recommendations -->
+    <div id="recommendationPopup" class="popup">
+        <div class="popup_content">
+            <h2>Recommended Crop: <span id="popupCropRecommendation">-</span></h2>
+            <button id="closePopup">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Update slider value and position the bubble dynamically
+        function updateSliderValue(sliderId, valueId) {
+            const slider = document.getElementById(sliderId);
+            const value = document.getElementById(valueId);
+            value.textContent = slider.value;
+
+            const percent = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+            value.style.left = `calc(${percent}% - 25px)`; // Adjust bubble position
+        }
+
+        // Set initial positions on page load
+        updateSliderValue('phLevel', 'phValue');
+        updateSliderValue('ecLevel', 'ecValue');
+        updateSliderValue('ocLevel', 'ocValue');
+        updateSliderValue('availP', 'availPValue');
+        updateSliderValue('exchK', 'exchKValue');
+        updateSliderValue('availS', 'availSValue');
+
+        // Event listeners to update values and positions dynamically
+        document.getElementById('phLevel').addEventListener('input', function() {
+            updateSliderValue('phLevel', 'phValue');
+        });
+        document.getElementById('ecLevel').addEventListener('input', function() {
+            updateSliderValue('ecLevel', 'ecValue');
+        });
+        document.getElementById('ocLevel').addEventListener('input', function() {
+            updateSliderValue('ocLevel', 'ocValue');
+        });
+        document.getElementById('availP').addEventListener('input', function() {
+            updateSliderValue('availP', 'availPValue');
+        });
+        document.getElementById('exchK').addEventListener('input', function() {
+            updateSliderValue('exchK', 'exchKValue');
+        });
+        document.getElementById('availS').addEventListener('input', function() {
+            updateSliderValue('availS', 'availSValue');
+        });
+
+        document.getElementById('soilForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent form submission
+
+            // Get user input values
+            let phLevel = parseFloat(document.getElementById('phLevel').value);
+            let ecLevel = parseFloat(document.getElementById('ecLevel').value);
+            let ocLevel = parseFloat(document.getElementById('ocLevel').value);
+            let availP = parseFloat(document.getElementById('availP').value);
+            let exchK = parseFloat(document.getElementById('exchK').value);
+            let availS = parseFloat(document.getElementById('availS').value);
+
+            // Simple crop recommendation logic
+            let recommendedCrop = '';
+
+            if (phLevel >= 6.0 && phLevel <= 7.5 && ecLevel < 1.5 && ocLevel > 0.5 && availP > 10 && exchK > 100 && availS > 20) {
+                recommendedCrop = 'Wheat';
+            } else if (phLevel >= 5.5 && phLevel <= 6.5 && ecLevel < 2.0 && ocLevel > 0.4 && availP > 15 && exchK > 120 && availS > 15) {
+                recommendedCrop = 'Rice';
+            } else if (phLevel >= 5.0 && phLevel <= 6.5 && ecLevel < 1.8 && ocLevel > 0.3 && availP > 12 && exchK > 80 && availS > 10) {
+                recommendedCrop = 'Corn';
+            } else {
+                recommendedCrop = 'No suitable crop found based on current soil conditions.';
+            }
+
+            // Display recommendation in the popup
+            document.getElementById('popupCropRecommendation').textContent = recommendedCrop;
+            document.getElementById('recommendationPopup').style.display = 'flex';
+        });
+
+        // Close the popup
+        document.getElementById('closePopup').addEventListener('click', function() {
+            document.getElementById('recommendationPopup').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
