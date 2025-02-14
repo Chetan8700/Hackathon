@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Health Analysis Portal</title>
+    <link rel="stylesheet" href="static\beststyle.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+        }
+
+        .form_container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form_section {
+            width: 50%;
+            padding: 10px 20px;
+        }
+
+        .form_section label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .form_section input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .submit_btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="form_container">
+        <!-- Left Section -->
+        <div class="form_section">
+            <form id="soilForm">
+                <label for="phLevel">pH Level</label>
+                <input type="number" id="phLevel" step="0.1" placeholder="Enter pH Level" required>
+        
+                <label for="ecLevel">Electrical Conductivity (EC)</label>
+                <input type="number" id="ecLevel" step="0.1" placeholder="Enter EC Level" required>
+        
+                <label for="ocLevel">Organic Carbon (OC)</label>
+                <input type="number" id="ocLevel" step="0.1" placeholder="Enter OC Level" required>
+        
+                <label for="availP">Available Phosphorus (Avail-P)</label>
+                <input type="number" id="availP" step="0.1" placeholder="Enter Avail-P Level" required>
+        
+                <label for="exchK">Exchangeable Potassium (Exch-K)</label>
+                <input type="number" id="exchK" step="0.1" placeholder="Enter Exch-K Level" required>
+        
+                <label for="availS">Available Sulfur (Avail-S)</label>
+                <input type="number" id="availS" step="0.1" placeholder="Enter Avail-S Level" required>
+        
+                <label for="availB">Available Boron (Avail-B)</label>
+                <input type="number" id="availB" step="0.1" placeholder="Enter Avail-B Level" required>
+        
+                <label for="availZn">Available Zinc (Avail-Zn)</label>
+                <input type="number" id="availZn" step="0.1" placeholder="Enter Avail-Zn Level" required>
+        
+                <label for="availFe">Available Iron (Avail-Fe)</label>
+                <input type="number" id="availFe" step="0.1" placeholder="Enter Avail-Fe Level" required>
+        
+                <label for="availCu">Available Copper (Avail-Cu)</label>
+                <input type="number" id="availCu" step="0.1" placeholder="Enter Avail-Cu Level" required>
+        
+                <label for="availMn">Available Manganese (Avail-Mn)</label>
+                <input type="number" id="availMn" step="0.1" placeholder="Enter Avail-Mn Level" required>
+        
+                <button type="submit" class="submit_btn">Submit Analysis</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        
+
+        document.getElementById('soilForm').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    // Collect form data
+    const data = {
+        phLevel: parseFloat(document.getElementById('phLevel').value),
+        ecLevel: parseFloat(document.getElementById('ecLevel').value),
+        ocLevel: parseFloat(document.getElementById('ocLevel').value),
+        availP: parseFloat(document.getElementById('availP').value),
+        exchK: parseFloat(document.getElementById('exchK').value),
+        availS: parseFloat(document.getElementById('availS').value),
+        availZn: parseFloat(document.getElementById('availZn').value),
+        availB: parseFloat(document.getElementById('availB').value),
+        availFe: parseFloat(document.getElementById('availFe').value),
+        availCu: parseFloat(document.getElementById('availCu').value),
+        availMn: parseFloat(document.getElementById('availMn').value),
+    };
+
+    // Send the data to Flask using fetch
+    try {
+        const response = await fetch('/predict', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', // Specify the content type
+            },
+            body: JSON.stringify(data), // Send data as JSON
+        });
+
+        if (!response.ok) {
+            throw new Error(`Server error: ${response.statusText}`);
+        }
+
+        const result = await response.json();
+
+        // Display prediction result in a popup
+        alert(`Prediction Status: ${result.prediction}`);
+    } catch (error) {
+        alert(`Error: ${error.message}`);
+    }
+});
+
+    </script>
+</body>
+</html>
