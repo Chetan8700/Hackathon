@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="static\styles.css"/>
+</head>
+
+<body>
+    <div id="section1">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark pt-3 pb-3 custom-navbar">
+                        <div class="container-fluid">
+                            <!-- Animated Logo aligned to the left -->
+                            <a class="navbar-brand p-0 m-0" href="#">
+                                <img src="https://res.cloudinary.com/dnxijnw0s/image/upload/v1739423307/Untitled_design_p4isrw.png" class="farma-deal-logo" />
+                            </a>
+                            <!-- Navbar toggler for mobile view -->
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <!-- Centered Navbar Links -->
+                            <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+                                <div class="navbar-nav">
+                                    <a class="nav-link active mx-3" id="navItem1" href="#">Dashboard</a>
+                                    <a class="nav-link mx-3" href="#" id="navItem2">Knowledge Hub</a>
+                                    <a class="nav-link mx-3" href="#sectionCrops" id="navItem3">Contact Support</a>
+                                    <a class="nav-link mx-3" href="#" id="navItem4">Privacy Policy</a>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="col-12">
+                    <section class="video-background-container">
+                        <video autoplay muted loop class="background-video">
+                            <source src="https://res.cloudinary.com/dnxijnw0s/video/upload/v1739423320/CropNurture_2_r8u0in.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class=" content-overlay  d-flex justify-content-center flex-column">
+                            <div class="text-center">
+                                <h1 class="banner-heading mb-3">Optimize Your Soil, Maximize Your Harvest!🌱</h1>
+                                <p class="banner-caption mb-4">With CropNurture</p>
+                                <a href="{{ url_for('best') }}">
+                                    <button class="custom-button">Analyze your Soil</button>
+                                </a>
+                                <button class="custom-outline-button" onclick ="display('section2')">Get Started</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    <div class="main-bg-bottom-container">
+        <div class="wcu-section pt-5 pb-5 ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center mb-3 hiw-container">
+                        <h1 class="wcu-section-heading">How It Works🌱 </h1>
+                        <p class="wcu-section-description">
+                            -Get AI-Powered Soil Insights!
+                        </p>
+                    </div>
+                    <div class="recommendation-bg-container">
+                        <div class="content-wrapper">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-6 order-1 order-md-2 d-flex flex-row justify-content-center">
+                                        <div class="text-center product-card mr-md-3">
+                                            <img src="https://res.cloudinary.com/dnxijnw0s/image/upload/v1739426814/soil1_vrdtvb.jpg" class=" custom-product-image" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 order-2 order-md-1 d-flex flex-column justify-content-center">
+                                        <div class="mb-3 pb-5">
+                                            <h1 class="product-card-title">1. Collecting Soil Data</h1>
+                                            <p class="product-card-description">
+                                                Upload your soil sample details or connect smart sensors for real-time monitoring. </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <div class="text-center product-card mr-md-3">
+                                            <img src="https://res.cloudinary.com/dnxijnw0s/image/upload/v1739426814/soil2_shatnd.jpg" class="custom-product-image" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
+                                        <div class="pb-5">
+                                            <h1 class="product-card-title">2. Analyze & Predict  </h1>
+                                            <p class="product-card-description">
+                                                Our AI processes your data instantly, providing insights on moisture, nutrients, and pH levels.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-6 order-1 order-md-2">
+                                        <div class="text-center product-card mr-md-3">
+                                            <img src="https://res.cloudinary.com/dnxijnw0s/image/upload/v1739426814/soil3_secp6y.jpg" class="custom-product-image" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 order-2 order-md-1 d-flex flex-column justify-content-center">
+                                        <div class="mb-3 pb-5">
+                                            <h1 class="product-card-title">3. Improve Soil Health</h1>
+                                            <p class="product-card-description">
+                                                Follow AI-driven recommendations to optimize fertilizer use, enhance moisture retention, and boost crop yield.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-3 hiw-container">
+                <h1 class="wcu-section-heading">Features </h1>
+            </div>
+            <div class="col-12">
+                <section class="features-container">
+                    <h2 class="features-title">One place to keep your analysis accurate and insightful.</h2>
+                    <p class="features-subtitle">Our AI-powered system provides real-time analysis, smart predictions, and seamless integration with IoT devices.</p>
+
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-chart-line feature-icon"></i>
+                            <h3 class="feature-title">Real-Time Analysis</h3>
+                            <p class="feature-desc">Instant data processing from uploaded files or live sensors.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class="fas fa-brain feature-icon"></i>
+                            <h3 class="feature-title">AI-Based Predictions</h3>
+                            <p class="feature-desc">Smart recommendations based on soil properties.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class="fas fa-chart-pie feature-icon"></i>
+                            <h3 class="feature-title">Data Visualization</h3>
+                            <p class="feature-desc">Charts and graphs to track soil health trends.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class="fas fa-user-check feature-icon"></i>
+                            <h3 class="feature-title">Personalized Insights</h3>
+                            <p class="feature-desc">Tailored insights to improve soil fertility and yield.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class="fas fa-microchip feature-icon"></i>
+                            <h3 class="feature-title">IoT Integration</h3>
+                            <p class="feature-desc">Seamless connection with smart agricultural devices.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class="fas fa-bell feature-icon"></i>
+                            <h3 class="feature-title">Automated Alerts</h3>
+                            <p class="feature-desc">Receive notifications for critical soil conditions.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-3 p-4 hiw-container">
+                    <h1 class="wcu-section-heading-new">Ready to Optimize Your Soil Health? Start Your Analysis Now! </h1>
+                    <a href="{{ url_for('best') }}">
+                        <button class="custom-button">Analyze your Soil</button>
+                    </a>
+                </div>
+            </div>
+            </div>
+    </div>
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h2>About Us</h2>
+                    <p>Product Recommendation</p>
+                    <div class="custom-social-btns">
+                        <a class="custom-btn" style="--custom-color: #3B5998;">
+                            <ion-icon name="logo-facebook"></ion-icon>
+                        </a>
+                        <a class="custom-btn" style="--custom-color: #3CF;">
+                            <ion-icon name="logo-twitter"></ion-icon>
+                        </a>
+                        <a class="custom-btn" style="--custom-color: #E73F29;">
+                            <ion-icon name="logo-youtube"></ion-icon>
+                        </a>
+                        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+                        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+                    </div>
+                </div>
+    
+                <div class="footer-column">
+                    <h2>Quick Links</h2>
+                    <ul>
+                        <li><a href="#">contact us</a></li>
+                        <li><a href="#">Our projects</a></li>
+                        <li><a href="#">Upcomings</a></li>
+                    </ul>
+                </div>
+    
+                <div class="footer-column">
+                    <h2>Official Info</h2>
+                    <p>+91 11111111111</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2024 <span class="span-footer-element">YMB</span>. All Right Reserved</p>
+            </div>
+        </footer>
+    </div>
+    <script type="text/javascript" src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-static-website/js/ccbp-ui-kit.js"></script>
+    <script src="//code.tidio.co/pyih4c5tn57lmqs32f3engadzpkfta7q.js" async></script>
+</body>
+
+</html>
